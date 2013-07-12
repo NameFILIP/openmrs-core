@@ -7,7 +7,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.openmrs.web</groupId>
    <artifactId>openmrs-webapp</artifactId>
-   <packaging>bundle</packaging>
+   <packaging>war</packaging>
    <name>openmrs-webapp</name>
    <description>The web application of openmrs</description>
 
@@ -74,6 +74,9 @@
             <artifactId>maven-war-plugin</artifactId>
             <version>2.1-beta-1</version>
             <configuration>
+               <archive>
+      	          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+    	       </archive>
                <webResources>
                   <resource>
                      <directory>src/main/webapp</directory>
@@ -132,10 +135,22 @@
 			<groupId>org.apache.felix</groupId>
 			<artifactId>maven-bundle-plugin</artifactId>
 			<version>2.4.0</version>
-			<extensions>true</extensions>
+			<executions>
+				<execution>
+					<id>bundle-manifest</id>
+					<phase>process-classes</phase>
+					<goals>
+						<goal>manifest</goal>
+					</goals>
+				</execution>
+			</executions>
 			<configuration>
+				<supportedProjectTypes>
+					<supportedProjectType>jar</supportedProjectType>
+					<supportedProjectType>bundle</supportedProjectType>
+					<supportedProjectType>war</supportedProjectType>
+				</supportedProjectTypes>
 				<instructions>
-					<_wab/>
 					<!-- Import-Package optional resolution is a dirty hack. 
 					TODO: fix it with negation or explicit list of packages -->
 <!-- 					<Import-Package>!com.sun.jdmk.comm, *<Import-Package> -->
