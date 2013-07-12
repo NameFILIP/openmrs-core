@@ -7,7 +7,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.openmrs.web</groupId>
    <artifactId>openmrs-webapp</artifactId>
-   <packaging>war</packaging>
+   <packaging>bundle</packaging>
    <name>openmrs-webapp</name>
    <description>The web application of openmrs</description>
 
@@ -128,6 +128,25 @@
                     </dependency>
                 </dependencies>
          </plugin>
+		<plugin>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<version>2.4.0</version>
+			<extensions>true</extensions>
+			<configuration>
+				<instructions>
+					<_wab/>
+					<!-- Import-Package optional resolution is a dirty hack. 
+					TODO: fix it with negation or explicit list of packages -->
+<!-- 					<Import-Package>!com.sun.jdmk.comm, *<Import-Package> -->
+					<Import-Package>*;resolution:=optional</Import-Package>
+					<Embed-Directory>WEB-INF/lib</Embed-Directory>
+					<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+					<Embed-Transitive>true</Embed-Transitive>
+					<Web-ContextPath>openmrs</Web-ContextPath>
+				</instructions>
+			</configuration>
+		</plugin>
       </plugins>
    </build>
    <profiles>
