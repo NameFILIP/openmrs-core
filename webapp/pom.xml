@@ -7,7 +7,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.openmrs.web</groupId>
    <artifactId>openmrs-webapp</artifactId>
-   <packaging>war</packaging>
+   <packaging>bundle</packaging>
    <name>openmrs-webapp</name>
    <description>The web application of openmrs</description>
 
@@ -40,6 +40,7 @@
             <excludes>
                <exclude>liquibase-demo-data.zip</exclude>
             </excludes>
+            <targetPath>WEB-INF/classes</targetPath>
          </resource>
          <resource>
             <directory>src/main/webapp</directory>
@@ -51,44 +52,41 @@
          </resource>
       </resources>
       <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.4</version>
-            <executions>
-               <execution>
-                  <phase>process-resources</phase>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-                  <configuration>
-                     <tasks>
-                        <unzip src="src/main/resources/liquibase-demo-data.zip" dest="${project.build.outputDirectory}" />
-                     </tasks>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>2.1-beta-1</version>
-            <configuration>
-               <archive>
-      	          <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-    	       </archive>
-               <webResources>
-                  <resource>
-                     <directory>src/main/webapp</directory>
-                     <includes>
-                        <include>WEB-INF/web.xml</include>
-                     </includes>
-                     <filtering>true</filtering>
-                  </resource>
-               </webResources>
-               <packagingExcludes>test/**</packagingExcludes>
-            </configuration>
-         </plugin>
+<!--          <plugin> -->
+<!--             <groupId>org.apache.maven.plugins</groupId> -->
+<!--             <artifactId>maven-antrun-plugin</artifactId> -->
+<!--             <version>1.4</version> -->
+<!--             <executions> -->
+<!--                <execution> -->
+<!--                   <phase>process-resources</phase> -->
+<!--                   <goals> -->
+<!--                      <goal>run</goal> -->
+<!--                   </goals> -->
+<!--                   <configuration> -->
+<!--                      <tasks> -->
+<!--                         <unzip src="src/main/resources/liquibase-demo-data.zip" dest="${project.build.outputDirectory}" /> -->
+<!--                      </tasks> -->
+<!--                   </configuration> -->
+<!--                </execution> -->
+<!--             </executions> -->
+<!--          </plugin> -->
+<!--          <plugin> -->
+<!--             <groupId>org.apache.maven.plugins</groupId> -->
+<!--             <artifactId>maven-war-plugin</artifactId> -->
+<!--             <version>2.1-beta-1</version> -->
+<!--             <configuration> -->
+<!--                <webResources> -->
+<!--                   <resource> -->
+<!--                      <directory>src/main/webapp</directory> -->
+<!--                      <includes> -->
+<!--                         <include>WEB-INF/web.xml</include> -->
+<!--                      </includes> -->
+<!--                      <filtering>true</filtering> -->
+<!--                   </resource> -->
+<!--                </webResources> -->
+<!--                <packagingExcludes>test/**</packagingExcludes> -->
+<!--             </configuration> -->
+<!--          </plugin> -->
          <plugin>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>maven-jetty-plugin</artifactId>
@@ -99,7 +97,7 @@
                   <contextPath>/${webapp.name}</contextPath>
                   <!--enable reloading static resources -->
                   <overrideDescriptor>src/test/resources/override-web.xml</overrideDescriptor>
-                  <extraClasspath>target/classes;../api/target/classes;../web/target/classes</extraClasspath>
+                  <extraClasspath>target/classes/WEB-INF/classes;target/classes;../api/target/classes;../web/target/classes</extraClasspath>
                </webAppConfig>
                <scanIntervalSeconds>10</scanIntervalSeconds>
                <scanTargets>
@@ -117,7 +115,6 @@
          <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.9.1</version>
                 <configuration>
                     <includes>**/*.jsp</includes>
                     <sourceDirectory>../webapp</sourceDirectory>
@@ -135,26 +132,20 @@
 			<groupId>org.apache.felix</groupId>
 			<artifactId>maven-bundle-plugin</artifactId>
 			<version>2.4.0</version>
-			<executions>
-				<execution>
-					<id>bundle-manifest</id>
-					<phase>process-classes</phase>
-					<goals>
-						<goal>manifest</goal>
-					</goals>
-				</execution>
-			</executions>
+			<extensions>true</extensions>
 			<configuration>
-				<supportedProjectTypes>
-					<supportedProjectType>jar</supportedProjectType>
-					<supportedProjectType>bundle</supportedProjectType>
-					<supportedProjectType>war</supportedProjectType>
-				</supportedProjectTypes>
 				<instructions>
+					<!-- Process web.xml to substitute properties ${prop} -->
+					<_wab>src/main/webapp/, {WEB-INF/web.xml=src/main/webapp/WEB-INF/web.xml}</_wab>
+					<!-- Don't copy src/main/webapp/test/** -->
+					<_donotcopy>(.git|.DS_Store|test)</_donotcopy>
 					<!-- Import-Package optional resolution is a dirty hack. 
 					TODO: fix it with negation or explicit list of packages -->
 <!-- 					<Import-Package>!com.sun.jdmk.comm, *<Import-Package> -->
 					<Import-Package>*;resolution:=optional</Import-Package>
+					
+					<!-- Extract liquibase-demo-data.zip to WEB-INF/classes -->
+					<Include-Resource>WEB-INF/classes/=@src/main/resources/liquibase-demo-data.zip, {maven-resources}</Include-Resource>
 					<Embed-Directory>WEB-INF/lib</Embed-Directory>
 					<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
 					<Embed-Transitive>true</Embed-Transitive>
@@ -182,7 +173,7 @@
                         <contextPath>/${webapp.name}</contextPath>
                         <!--enable reloading static resources -->
                         <overrideDescriptor>src/test/resources/override-web.xml</overrideDescriptor>
-                        <extraClasspath>target/classes;../api/target/classes;../web/target/classes</extraClasspath>
+                        <extraClasspath>target/classes/WEB-INF/classes;target/classes;../api/target/classes;../web/target/classes</extraClasspath>
                      </webAppConfig>
                      <scanIntervalSeconds>0</scanIntervalSeconds>
                   </configuration>
