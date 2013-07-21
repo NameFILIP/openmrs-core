@@ -135,21 +135,9 @@
 			<extensions>true</extensions>
 			<configuration>
 				<instructions>
-					<!-- Process web.xml to substitute properties ${prop} -->
-					<_wab>src/main/webapp/, {WEB-INF/web.xml=src/main/webapp/WEB-INF/web.xml}</_wab>
-					<!-- Don't copy src/main/webapp/test/** -->
-					<_donotcopy>(.git|.DS_Store|test)</_donotcopy>
-					<!-- Import-Package optional resolution is a dirty hack. 
-					TODO: fix it with negation or explicit list of packages -->
-<!-- 					<Import-Package>!com.sun.jdmk.comm, *<Import-Package> -->
-					<Import-Package>*;resolution:=optional</Import-Package>
-					
-					<!-- Extract liquibase-demo-data.zip to WEB-INF/classes -->
-					<Include-Resource>WEB-INF/classes/=@src/main/resources/liquibase-demo-data.zip, {maven-resources}</Include-Resource>
-					<Embed-Directory>WEB-INF/lib</Embed-Directory>
-					<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-					<Embed-Transitive>true</Embed-Transitive>
-					<Web-ContextPath>openmrs</Web-ContextPath>
+					<_include>
+						osgi.bnd
+					</_include>
 				</instructions>
 			</configuration>
 		</plugin>
@@ -302,8 +290,8 @@
    </profiles>
 
    <properties>
-      <WEBAPP.DISPLAY.NAME>OpenMRS</WEBAPP.DISPLAY.NAME>
-      <WEBAPP.DESCRIPTION>An Open-Source EMR System</WEBAPP.DESCRIPTION>
+      <webapp.display.name>OpenMRS</webapp.display.name>
+      <webapp.description>An Open-Source EMR System</webapp.description>
       <webapp.name>openmrs</webapp.name>
    </properties>
 </project>

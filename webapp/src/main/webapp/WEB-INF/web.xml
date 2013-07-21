@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 
-	<display-name>${WEBAPP.DISPLAY.NAME}</display-name>
-	<display-name>${WEBAPP.DESCRIPTION}</display-name> 
+	<display-name>${webapp.display.name}</display-name>
+	<description>${webapp.description}</description> 
 
 	<context-param>
         <param-name>contextConfigLocation</param-name>
