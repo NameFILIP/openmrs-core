@@ -249,7 +249,8 @@ Import-Package:  bitronix.tm.internal;\
  sun.misc;\
  sun.net.www.http;\
  sun.reflect;\
- resolution:=optional
+ resolution:=optional,\
+ *
 
 #Extract liquibase-demo-data.zip to WEB-INF/classes
 Include-Resource: WEB-INF/classes/=@src/main/resources/liquibase-demo-data.zip, {maven-resources}
@@ -266,5 +267,5 @@ Web-ContextPath: openmrs
 #Don't copy src/main/webapp/test/**
 -donotcopy: (.git|.DS_Store|test)
 
-#Remove bnd-related headers from MANIFEST
+#Remove bnd-related headers from manifest
 -removeheaders: Created-By, Tool, Private-Package, Bnd-LastModified, Embed-Dependency, Embed-Directory, Embed-Transitive, Embedded-Artifacts, Include-Resource
