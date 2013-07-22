@@ -136,7 +136,7 @@
 			<configuration>
 				<instructions>
 					<_include>
-						osgi.bnd
+						webapp.bnd
 					</_include>
 				</instructions>
 			</configuration>
