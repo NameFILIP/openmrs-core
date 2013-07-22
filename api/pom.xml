@@ -7,6 +7,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.openmrs.api</groupId>
    <artifactId>openmrs-api</artifactId>
+   <packaging>bundle</packaging>
    <name>openmrs-api</name>
    <description>The api that is re-used across web and modules</description>
    <dependencies>
@@ -269,6 +270,19 @@
                   </goals>
                </execution>
             </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>2.4.0</version>
+            <extensions>true</extensions>
+            <configuration>
+               <instructions>
+                  <_include>
+                     api.bnd
+                  </_include>
+			   </instructions>
+            </configuration>
          </plugin>
       </plugins>
    </build>
