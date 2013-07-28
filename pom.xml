@@ -125,10 +125,17 @@
 				<artifactId>dwr</artifactId>
 				<version>2.0.5-mod</version>
 			</dependency>
+
+			<!-- 1.8.1 has OSGi headers -->
+			<dependency>
+				<groupId>commons-digester</groupId>
+				<artifactId>commons-digester</artifactId>
+				<version>1.8.1</version>
+			</dependency>
 			<dependency>
 				<groupId>org.apache.velocity</groupId>
 				<artifactId>velocity</artifactId>
-				<version>1.6.2</version>
+				<version>1.7</version>
 				<exclusions>
 					<exclusion>
 						<groupId>oro</groupId>
@@ -136,6 +143,13 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>1.4.0</version>
+			</dependency>
+			
             <dependency>
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-tools</artifactId>
@@ -151,7 +165,7 @@
 			<dependency>
 				<groupId>commons-collections</groupId>
 				<artifactId>commons-collections</artifactId>
-				<version>3.2</version>
+				<version>3.2.1</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -236,6 +250,8 @@
 				<artifactId>antlr-runtime</artifactId>
 				<version>3.4</version>
 			</dependency>
+			
+			<!-- Exclude asm globally, then substitute by springsource's one -->
 			<dependency>
 				<groupId>asm</groupId>
 				<artifactId>asm</artifactId>
@@ -251,15 +267,31 @@
 				<artifactId>asm-util</artifactId>
 				<version>2.2.3</version>
 			</dependency>
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.objectweb.asm</groupId> -->
+<!-- 				<artifactId>com.springsource.org.objectweb.asm</artifactId> -->
+<!-- 				<version>2.2.3</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.objectweb.asm</groupId> -->
+<!-- 				<artifactId>com.springsource.org.objectweb.asm.commons</artifactId> -->
+<!-- 				<version>2.2.3</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.objectweb.asm</groupId> -->
+<!-- 				<artifactId>com.springsource.org.objectweb.asm.util</artifactId> -->
+<!-- 				<version>2.2.3</version> -->
+<!-- 			</dependency> -->
+			
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib-nodep</artifactId>
 				<version>2.2</version>
 			</dependency>
 			<dependency>
-				<groupId>javassist</groupId>
+				<groupId>org.javassist</groupId>
 				<artifactId>javassist</artifactId>
-				<version>3.12.1.GA</version>
+				<version>3.18.0-GA</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openmrs.hibernate</groupId>
@@ -398,7 +430,7 @@
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>1.2.15</version>
+				<version>1.2.17</version>
 				<exclusions>
 					<exclusion>
 						<groupId>javax.jms</groupId>
@@ -478,7 +510,7 @@
 			<dependency>
 				<groupId>javax.mail</groupId>
 				<artifactId>mail</artifactId>
-				<version>1.4.1</version>
+				<version>1.4.7</version>
 			</dependency>
 			<dependency>
 				<groupId>xerces</groupId>
@@ -496,6 +528,8 @@
 				<version>1.1</version>
 				<scope>runtime</scope>
 			</dependency>
+			
+			<!-- Exclude beanutils globally, then substitute by springsource's one -->
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
@@ -506,7 +540,24 @@
 						<artifactId>commons-logging</artifactId>
 					</exclusion>
 				</exclusions>
+				<scope>provided</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>com.springsource.org.apache.commons.beanutils</artifactId>
+				<version>1.7.0</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.commons</groupId>
+						<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.commons</groupId>
+						<artifactId>com.springsource.org.apache.commons.collections</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
@@ -662,8 +713,22 @@
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
+                <version>1.1.0.Final</version>
             </dependency>
+
+			<!-- Exclude aopalliance globally, then substitute by springsource's one -->
+			<dependency>
+				<artifactId>aopalliance</artifactId>
+				<groupId>aopalliance</groupId>
+				<version>1.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.aopalliance</groupId>
+				<artifactId>com.springsource.org.aopalliance</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+            
         </dependencies>
 	</dependencyManagement>
 
@@ -992,6 +1057,18 @@
 			<id>openmrs-repo</id>
 			<name>OpenMRS Nexus Repository</name>
 			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+	
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
 	</repositories>
 

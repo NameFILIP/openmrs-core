@@ -1,8 +1,58 @@
 Embed-Directory: lib
-Embed-Dependency: *;scope=compile|runtime;artifactId=ehcache-core|hapi-base|hapi-structures-v25
+Embed-Dependency: *;scope=compile|runtime;artifactId=\
+ antlr|\
+ antlr-runtime|\
+ asm|\
+ asm-commons|\
+ asm-tree|\
+ asm-util|\
+ c3p0|\
+ cglib-nodep|\
+ ehcache-core|\
+ hapi-base|\
+ hapi-structures-v25|\
+ hapi-structures-v26|\
+ hibernate-c3p0|\
+ hibernate-commons-annotations|\
+ hibernate-core|\
+ hibernate-ehcache|\
+ hibernate-jpa-2.0-api|\
+ identity-insert|\
+ jdom|\
+ jta|\
+ jtds|\
+ liquibase-core|\
+ modify-column|\
+ mysql-connector-java|\
+ postgresql|\
+ reflectutils|\
+ simple-xml|\
+ stax|\
+ stringtemplate|\
+ type-converter|\
+ xalan|\
+ xercesImpl|\
+ xml-apis|\
+ xml-resolver
 Embed-Transitive: true
 
-#Export-Package: 
+Export-Package: org.openmrs.*
+
+-exportcontents: antlr.*,\
+ ca.uhn.hl7v2.*,\
+ liquibase.*,\
+ net.sf.ehcache.*,\
+ org.apache.velocity.*,\
+ org.apache.xalan.*,\
+ org.apache.xerces.*,\
+ org.apache.xml.utils.*,\
+ org.apache.xpath.*,\
+ org.azeckoski.reflectutils,\
+ org.hibernate.*,\
+ org.jdom.*,\
+ org.simpleframework.xml.*,\
+ org.w3c.dom.*,\
+ org.xml.sax.*
 
 Import-Package: bitronix.tm.internal;\
  bitronix.tm.recovery;\

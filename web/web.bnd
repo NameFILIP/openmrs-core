@@ -1,6 +1,28 @@
-#Bundle-SymbolicName: org.openmrs.webapp
+Embed-Directory: lib
+Embed-Dependency: *;scope=compile|runtime;artifactId=\
+ commons-chain,\
+ dwr,\
+ jcommon,\
+ jfreechart,\
+ oro,\
+ page,\
+ request,\
+ response,\
+ saxon,\
+ saxon-dom,\
+ sslext,\
+ struts-core,\
+ struts-taglib,\
+ struts-tiles,\
+ velocity-toolsf
+Embed-Transitive: true
 
-Import-Package:  bitronix.tm.internal;\
+Export-Package: org.openmrs.*
+
+-exportcontents: org.directwebremoting.*,\
+ 
+
+Import-Package: bitronix.tm.internal;\
  bitronix.tm.recovery;\
  bitronix.tm.resource;\
  bitronix.tm.resource.common;\
@@ -24,6 +46,7 @@ Import-Package:  bitronix.tm.internal;\
  com.ibatis.sqlmap.engine.transaction;\
  com.ibatis.sqlmap.engine.transaction.external;\
  com.ibatis.sqlmap.engine.type;\
+ com.ibm.uvm.tools;\
  com.ibm.wsspi.uow;\
  com.jamonapi;\
  com.lowagie.text;\
@@ -77,6 +100,7 @@ Import-Package:  bitronix.tm.internal;\
  javax.interceptor;\
  javax.jdo;\
  javax.jdo.datastore;\
+ javax.jmdns;\
  javax.jms;\
  javax.jws;\
  javax.management;\
@@ -98,13 +122,9 @@ Import-Package:  bitronix.tm.internal;\
  javax.security.auth;\
  javax.security.auth.callback;\
  javax.security.auth.login;\
+ javax.security.auth.x500;\
  javax.security.jacc;\
  javax.security.sasl;\
- javax.servlet;\
- javax.servlet.http;\
- javax.servlet.jsp;\
- javax.servlet.jsp.el;\
- javax.servlet.jsp.tagext;\
  javax.sql;\
  javax.sql.rowset;\
  javax.swing;\
@@ -147,6 +167,8 @@ Import-Package:  bitronix.tm.internal;\
  oracle.toplink.essentials.sessions;\
  oracle.xml.parser;\
  oracle.xml.parser.v2;\
+ org.aopalliance.aop;\
+ org.aopalliance.intercept;\
  org.apache.bcel.classfile;\
  org.apache.bcel.generic;\
  org.apache.bcel.util;\
@@ -233,7 +255,6 @@ Import-Package:  bitronix.tm.internal;\
  org.jruby.runtime;\
  org.jruby.runtime.builtin;\
  org.kxml2.io;\
- org.objectweb.asm.attrs;\
  org.objectweb.asm.tree.analysis;\
  org.omg.CORBA;\
  org.quartz;\
@@ -249,41 +270,10 @@ Import-Package:  bitronix.tm.internal;\
  sun.misc;\
  sun.net.www.http;\
  sun.reflect;\
+ sun.security.util;\
  resolution:=optional,\
- org.openmrs.web,\
- org.openmrs.web.servlet,\
- org.openmrs.hl7.web,\
- org.springframework.web.util,\
- org.directwebremoting.servlet,\
- org.openmrs.web.dwr,\
- org.springframework.web.filter,\
- org.openmrs.web.filter.startuperror,\
- org.openmrs.web.filter.initialization,\
- org.openmrs.web.filter.update,\
- org.springframework.orm.hibernate3.support,\
- org.openmrs.web.filter,\
- org.openmrs.module.web.filter,\
- org.openmrs.module.web,\
- org.springframework.web,\
- net.sf.ehcache.constructs.web,\
  *
 
-DynamicImport-Package: *
-
-#Extract liquibase-demo-data.zip to WEB-INF/classes
-Include-Resource: WEB-INF/classes/=@src/main/resources/liquibase-demo-data.zip, {maven-resources}
-
-#Embed-Directory: WEB-INF/lib
-#Embed-Dependency: *;scope=compile|runtime
-#Embed-Transitive: true
-
-Web-ContextPath: openmrs
-
-# Process web.xml to substitute properties ${prop}
--wab: src/main/webapp/, {WEB-INF/web.xml=src/main/webapp/WEB-INF/web.xml}
-
-#Don't copy src/main/webapp/test/**
--donotcopy: (.git|.DS_Store|test)
-
 #Remove bnd-related headers from manifest
--removeheaders: Created-By, Tool, Private-Package, Bnd-LastModified, Embed-Dependency, Embed-Directory, Embed-Transitive, Embedded-Artifacts, Include-Resource
+-removeheaders: Created-By, Tool, Private-Package, Bnd-LastModified, Include-Resource,\
+ Embed-Dependency, Embed-Directory, Embed-Transitive, Embedded-Artifacts
