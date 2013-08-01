@@ -8,19 +8,28 @@ Embed-Dependency: *;scope=compile|runtime;artifactId=\
  page,\
  request,\
  response,\
- saxon,\
- saxon-dom,\
  sslext,\
  struts-core,\
  struts-taglib,\
  struts-tiles,\
- velocity-toolsf
+ velocity-tools
 Embed-Transitive: true
 
-Export-Package: org.openmrs.*
+Export-Package: org.openmrs.hl7.web.*,\
+ org.openmrs.layout.web.*,\
+ org.openmrs.module.web.*,\
+ org.openmrs.notification.web.*,\
+ org.openmrs.scheduler.web.*,\
+ org.openmrs.web.*
 
--exportcontents: org.directwebremoting.*,\
- 
+-exportcontents: org.apache.commons.chain.*,\
+ org.directwebremoting.*,\
+ com.keypoint,\
+ org.jfree.*,\
+ org.apache.oro.*,\
+ org.apache.taglibs.*,\
+ org.apache.struts.*,\
+ org.apache.velocity.tools.*
 
 Import-Package: bitronix.tm.internal;\
  bitronix.tm.recovery;\
@@ -272,7 +281,10 @@ Import-Package: bitronix.tm.internal;\
  sun.reflect;\
  sun.security.util;\
  resolution:=optional,\
+ org.apache.xerces.jaxp,\
  *
+ 
+DynamicImport-Package: *
 
 #Remove bnd-related headers from manifest
 -removeheaders: Created-By, Tool, Private-Package, Bnd-LastModified, Include-Resource,\
