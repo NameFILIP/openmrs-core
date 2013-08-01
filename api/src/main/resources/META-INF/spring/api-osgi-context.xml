@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/osgi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/osgi
+		http://www.springframework.org/schema/osgi/spring-osgi.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <service ref="messageSourceServiceTarget" interface="org.openmrs.messagesource.MessageSourceService"/> -->
+	<!-- <service ref="obsServiceTarget" interface="org.openmrs.api.ObsService"/> -->
+
+	<service ref="openmrsEventListeners" interface="org.openmrs.api.EventListeners" />
+
+	<!-- <service ref="patientValidator" interface="org.openmrs.validator.PatientValidator"/> -->
+
+	<service ref="patientService" interface="org.openmrs.api.PatientService" />
+	<service ref="personService" interface="org.openmrs.api.PersonService" />
+	<service ref="conceptService" interface="org.openmrs.api.ConceptService" />
+	<service ref="userService" interface="org.openmrs.api.UserService" />
+	<service ref="obsService" interface="org.openmrs.api.ObsService" />
+	<service ref="encounterService" interface="org.openmrs.api.EncounterService" />
+	<service ref="locationService" interface="org.openmrs.api.LocationService" />
+	<service ref="orderService" interface="org.openmrs.api.OrderService" />
+	<service ref="formService" interface="org.openmrs.api.FormService" />
+	<service ref="adminService" interface="org.openmrs.api.AdministrationService" />
+	<service ref="datatypeService" interface="org.openmrs.api.DatatypeService" />
+	<service ref="programWorkflowService" interface="org.openmrs.api.ProgramWorkflowService" />
+	<service ref="messageService" interface="org.openmrs.notification.MessageService" />
+	<service ref="patientSetService" interface="org.openmrs.api.PatientSetService" />
+	<service ref="cohortService" interface="org.openmrs.api.CohortService" />
+	<service ref="schedulerService" interface="org.openmrs.scheduler.SchedulerService" />
+	<service ref="alertService" interface="org.openmrs.notification.AlertService" />
+	<service ref="reportService" interface="org.openmrs.api.ReportService" />
+	<service ref="reportObjectService" interface="org.openmrs.reporting.ReportObjectService" />
+	<service ref="serializationService" interface="org.openmrs.api.SerializationService" />
+	<service ref="dataSetService" interface="org.openmrs.api.DataSetService" />
+	<service ref="hL7Service" interface="org.openmrs.hl7.HL7Service" />
+	<service ref="ardenService" interface="org.openmrs.arden.ArdenService" />
+	<service ref="messageSourceService" interface="org.openmrs.messagesource.MessageSourceService" />
+	<service ref="activeListService" interface="org.openmrs.api.ActiveListService" />
+	<service ref="visitService" interface="org.openmrs.api.VisitService" />
+	<service ref="providerService" interface="org.openmrs.api.ProviderService" />
+
+	<service ref="personValidator" interface="org.openmrs.validator.PersonValidator" />
+	<service ref="patientValidator" interface="org.openmrs.validator.PatientValidator" />
+	<service ref="locationValidator" interface="org.openmrs.validator.LocationValidator" />
+	<service ref="personNameValidator" interface="org.openmrs.validator.PersonNameValidator" />
+	<service ref="patientIdentifierValidator" interface="org.openmrs.validator.PatientIdentifierValidator" />
+	<service ref="patientIdentifierTypeValidator" interface="org.openmrs.validator.PatientIdentifierTypeValidator" />
+	<service ref="personAttributeTypeValidator" interface="org.openmrs.validator.PersonAttributeTypeValidator" />
+	<service ref="userValidator" interface="org.openmrs.validator.UserValidator" />
+	<service ref="roleValidator" interface="org.openmrs.validator.RoleValidator" />
+	<service ref="privilegeValidator" interface="org.openmrs.validator.PrivilegeValidator" />
+	<service ref="encounterTypeValidator" interface="org.openmrs.validator.EncounterTypeValidator" />
+	<service ref="conceptClassValidator" interface="org.openmrs.validator.ConceptClassValidator" />
+	<service ref="conceptDatatypeValidator" interface="org.openmrs.validator.ConceptDatatypeValidator" />
+	<service ref="formEditValidator" interface="org.openmrs.validator.FormValidator" />
+	<service ref="fieldTypeValidator" interface="org.openmrs.validator.FieldTypeValidator" />
+	<service ref="fieldValidator" interface="org.openmrs.validator.FieldValidator" />
+	<service ref="programValidator" interface="org.openmrs.validator.ProgramValidator" />
+	<service ref="stateConversionValidator" interface="org.openmrs.validator.StateConversionValidator" />
+	<service ref="taskValidator" interface="org.openmrs.validator.SchedulerFormValidator" />
+	<service ref="obsValidator" interface="org.openmrs.validator.ObsValidator" />
+	<service ref="orderValidator" interface="org.openmrs.validator.OrderValidator" />
+	<service ref="drugOrderValidator" interface="org.openmrs.validator.DrugOrderValidator" />
+	<service ref="requireNameValidator" interface="org.openmrs.validator.RequireNameValidator" />
+	<service ref="conceptDrugValidator" interface="org.openmrs.validator.ConceptDrugValidator" />
+	<service ref="hl7SourceValidator" interface="org.openmrs.validator.HL7SourceValidator" />
+	<service ref="personAddressValidator" interface="org.openmrs.validator.PersonAddressValidator" />
+	<service ref="visitTypeValidator" interface="org.openmrs.validator.VisitTypeValidator" />
+	<service ref="visitAttributeTypeValidator" interface="org.openmrs.validator.VisitAttributeTypeValidator" />
+	<service ref="providerAttributeTypeValidator" interface="org.openmrs.validator.ProviderAttributeTypeValidator" />
+	<service ref="encounterValidator" interface="org.openmrs.validator.EncounterValidator" />
+	<service ref="locationAttributeTypeValidator" interface="org.openmrs.validator.LocationAttributeTypeValidator" />
+	<service ref="providerValidator" interface="org.openmrs.validator.ProviderValidator" />
+	<service ref="patientProgramValidator" interface="org.openmrs.validator.PatientProgramValidator" />
+	<service ref="conceptValidator" interface="org.openmrs.validator.ConceptValidator" />
+	<service ref="personMergeLogValidator" interface="org.openmrs.validator.PersonMergeLogValidator" />
+	<service ref="conceptReferenceTermValidator" interface="org.openmrs.validator.ConceptReferenceTermValidator" />
+	<service ref="conceptMapTypeValidator" interface="org.openmrs.validator.ConceptMapTypeValidator" />
+</beans:beans> 

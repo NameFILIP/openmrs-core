@@ -1,58 +1,36 @@
 Embed-Directory: lib
 Embed-Dependency: *;scope=compile|runtime;artifactId=\
- antlr|\
  antlr-runtime|\
- asm|\
- asm-commons|\
- asm-tree|\
- asm-util|\
- c3p0|\
- cglib-nodep|\
- ehcache-core|\
  hapi-base|\
  hapi-structures-v25|\
  hapi-structures-v26|\
- hibernate-c3p0|\
- hibernate-commons-annotations|\
- hibernate-core|\
- hibernate-ehcache|\
- hibernate-jpa-2.0-api|\
  identity-insert|\
- jdom|\
- jta|\
  jtds|\
  liquibase-core|\
  modify-column|\
- mysql-connector-java|\
  postgresql|\
  reflectutils|\
  simple-xml|\
  stax|\
  stringtemplate|\
  type-converter|\
- xalan|\
- xercesImpl|\
- xml-apis|\
- xml-resolver
+ xalan
 Embed-Transitive: true
 
 Export-Package: org.openmrs.*
 
--exportcontents: antlr.*,\
+-exportcontents: org.antlr.*,\
  ca.uhn.hl7v2.*,\
+ ca.uhn.hl7v3.*,\
  liquibase.*,\
- net.sf.ehcache.*,\
- org.apache.velocity.*,\
- org.apache.xalan.*,\
- org.apache.xerces.*,\
- org.apache.xml.utils.*,\
- org.apache.xpath.*,\
- org.azeckoski.reflectutils,\
- org.hibernate.*,\
- org.jdom.*,\
+ net.sourceforge.jtds.*,\
+ org.postgresql.*,\
+ org.azeckoski.reflectutils.*,\
  org.simpleframework.xml.*,\
- org.w3c.dom.*,\
- org.xml.sax.*
+ com.bea.xml.stream.*,\
+ org.apache.xalan.*,\
+ org.apache.xml.*,\
+ org.apache.xpath.*
 
 Import-Package: bitronix.tm.internal;\
  bitronix.tm.recovery;\
@@ -215,6 +193,8 @@ Import-Package: bitronix.tm.internal;\
  sun.reflect;\
  resolution:=optional,\
  *
+
+DynamicImport-Package: *
 
 #Remove bnd-related headers from manifest
 -removeheaders: Created-By, Tool, Private-Package, Bnd-LastModified, Include-Resource,\
