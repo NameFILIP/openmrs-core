@@ -192,6 +192,7 @@ Import-Package: bitronix.tm.internal;\
  sun.net.www.http;\
  sun.reflect;\
  resolution:=optional,\
+ com.mysql.jdbc,\
  *
 
 DynamicImport-Package: *
